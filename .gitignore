@@ -1,3 +1,4 @@
 out
 tools
 src/main/org/x96/sys/foundation/buzz/BuildInfo.java
+*.jar

@@ -28,6 +28,8 @@ JAVA_TEST_SOURCES := $(shell find $(SRC_TEST) -name "*.java")
 
 BUILD_INFO = https://gist.githubusercontent.com/tfs91/d8a380974ee7f640e0692855b643ec01/raw/62720672c6f7329b19dd243bfa18b3a780dd3f0b/generate_build_info.rb
 
+DISTRO_JAR = org.x96.sys.foundation.buzz.jar
+
 build/info:
 	@curl -sSL $(BUILD_INFO) | ruby - src/main/ org.x96.sys.foundation.buzz
 
@@ -84,6 +86,10 @@ kit: \
 $(BUILD_DIR) $(MAIN_BUILD) $(TEST_BUILD) $(TOOL_DIR) $(COVERAGE_REPORT):
 	@mkdir -p $@
 
+distro:
+	@jar cf $(DISTRO_JAR) -C $(MAIN_BUILD) .
+	@echo "[☕️] [bin] [$(DISTRO_JAR)]"
+
 clean/build:
 	@rm -rf $(BUILD_DIR)
 	@echo "[🧽] [clean] [$(BUILD_DIR)]"
@@ -110,3 +116,4 @@ clean: \
 	clean/build/test \
 	clean/kit \
 	@echo "[🔬] [clean]"
+	@rm -f $(DISTRO_JAR)
