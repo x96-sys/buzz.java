@@ -6,7 +6,6 @@ COVERAGE_REPORT = $(BUILD_DIR)/coverage
 SRC_MAIN      = src/main
 SRC_TEST      = src/test
 
-LIB_DIR       = lib
 TOOL_DIR      = tools
 
 JUNIT_VERSION = 1.13.4
@@ -27,7 +26,12 @@ JACOCO_AGENT_URL     = $(JACOCO_BASE)/org.jacoco.agent/$(JACOCO_AGENT_VERSION)/o
 JAVA_SOURCES      := $(shell find $(SRC_MAIN) -name "*.java")
 JAVA_TEST_SOURCES := $(shell find $(SRC_TEST) -name "*.java")
 
-build: clean/build/main | $(MAIN_BUILD)
+BUILD_INFO = https://gist.githubusercontent.com/tfs91/d8a380974ee7f640e0692855b643ec01/raw/62720672c6f7329b19dd243bfa18b3a780dd3f0b/generate_build_info.rb
+
+build/info:
+	@curl -sSL $(BUILD_INFO) | ruby - src/main/ org.x96.sys.foundation.buzz
+
+build: build/info clean/build/main | $(MAIN_BUILD)
 	@javac -d $(MAIN_BUILD) $(JAVA_SOURCES)
 	@echo "[🦿] [compiled] [$(MAIN_BUILD)]"
 
@@ -77,7 +81,7 @@ kit: \
 	$(TOOL_DIR)/jacoco_cli \
 	$(TOOL_DIR)/jacoco_agent
 
-$(BUILD_DIR) $(MAIN_BUILD) $(TEST_BUILD) $(TOOL_DIR) $(LIB_DIR) $(COVERAGE_REPORT):
+$(BUILD_DIR) $(MAIN_BUILD) $(TEST_BUILD) $(TOOL_DIR) $(COVERAGE_REPORT):
 	@mkdir -p $@
 
 clean/build:
@@ -100,14 +104,9 @@ clean/kit:
 	@rm -rf $(TOOL_DIR)
 	@echo "[🛀] [clean] [$(TOOL_DIR)]"
 
-clean/libs:
-	@rm -rf $(LIB_DIR)
-	@echo "[🥽] [clean] [$(LIB_DIR)]"
-
 clean: \
 	clean/build \
 	clean/build/main \
 	clean/build/test \
 	clean/kit \
-	clean/libs
 	@echo "[🔬] [clean]"
