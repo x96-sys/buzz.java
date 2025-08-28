@@ -2,12 +2,9 @@ package org.x96.sys.foundation.buzz;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 @DisplayName("Testes para a classe Buzz")
 class BuzzTest {
@@ -139,9 +136,11 @@ class BuzzTest {
         @DisplayName("Deve ser lançável como exceção")
         void shouldBeThrowable() {
             // Act & Assert
-            assertThrows(Buzz.class, () -> {
-                throw new Buzz(404, "NOT_FOUND", "Recurso não encontrado");
-            });
+            assertThrows(
+                    Buzz.class,
+                    () -> {
+                        throw new Buzz(404, "NOT_FOUND", "Recurso não encontrado");
+                    });
         }
 
         @Test

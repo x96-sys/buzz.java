@@ -10,7 +10,7 @@ public class Buzz extends RuntimeException {
         "🐞", "🕷️", "🪲", "🐜", "🦟", "🐝", "🦋", "🦖", "🦕", "🌵"
     };
 
-    protected Buzz(int code, String bee, String msg, Throwable cause) {
+    public Buzz(int code, String bee, String msg, Throwable cause) {
         super(format(code, bee, msg), cause);
     }
 
