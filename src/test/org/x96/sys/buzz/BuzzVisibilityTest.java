@@ -1,4 +1,4 @@
-package org.x96.sys.foundation.buzz;
+package org.x96.sys.buzz;
 
 import static org.junit.jupiter.api.Assertions.*;
 

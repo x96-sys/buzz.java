@@ -1,4 +1,6 @@
 out
 tools
-src/main/org/x96/sys/foundation/buzz/BuildInfo.java
+src/main/org/x96/sys/buzz/BuildInfo.java
 *.jar
+.zig-cache
+.idea

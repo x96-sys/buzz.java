@@ -39,7 +39,7 @@ BUILD_INFO = https://gist.githubusercontent.com/tfs91/d8a380974ee7f640e0692855b6
 DISTRO_JAR = org.x96.sys.foundation.buzz.jar
 
 build/info:
-	@curl -sSL $(BUILD_INFO) | ruby - src/main/ org.x96.sys.foundation.buzz
+	@curl -sSL $(BUILD_INFO) | ruby - src/main/ org.x96.sys.buzz
 
 build: build/info clean/build/main
 	@javac -d $(MAIN_BUILD) $(JAVA_SOURCES)

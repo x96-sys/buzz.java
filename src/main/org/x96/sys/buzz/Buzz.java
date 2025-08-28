@@ -1,4 +1,4 @@
-package org.x96.sys.foundation.buzz;
+package org.x96.sys.buzz;
 
 public class Buzz extends RuntimeException {
 
